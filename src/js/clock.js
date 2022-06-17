@@ -12,6 +12,6 @@ function startClock () {
 function buildDate (date) {
   let month = (date.getMonth() < 10) ? ('0' + (date.getMonth() + 1)) : date.getMonth() ;
   let dayDate = (date.getDate() < 10) ? ('0' + date.getDate()) : date.getDate();
-  return `${date.getHours()}:${date.getMinutes()} ${dayDate}.${month}.${date.getFullYear()}`
+  return `${date.getHours()}:${date.getMinutes()}  ${dayDate}.${month}.${date.getFullYear()}`
 }
 export { startClock, buildDate }
