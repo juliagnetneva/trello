@@ -1,0 +1,44 @@
+.popup {
+display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: $darkGray;
+  z-index: 99;
+  &__container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  &__body {
+    margin: auto;
+    width: 30rem;
+    background-color: $whiteBackground;
+    border: 1px solid $gray;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    position: relative;
+  }
+}
+.popup.active {
+  display: block;
+}
+
+#form-todo {
+  & #textarea {
+    height: 100px;
+  }
+  & .bottom-block {
+    display: flex;
+    justify-content: space-between;
+    & select {
+      width: 50%;
+      margin-right: auto;
+    }
+    & button {
+      margin-left: 0.5rem;
+    }
+  }
+}

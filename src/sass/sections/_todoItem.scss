@@ -1,0 +1,85 @@
+.item {
+  border-radius: 0.3rem;
+  background: $white;
+  box-shadow: $boxShadowSm;
+  text-align: start;
+  padding: 0.3rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: $darkBlue;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    box-shadow: $boxShadowLg;
+  }
+  &:last-of-type {
+    margin-bottom: 0.5rem;
+  }
+  &__top {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    &__select {
+      max-width: 8rem;
+      border-radius: 0.4rem;
+      border: 1px solid $gray;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      outline: none;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        box-shadow: $boxShadowInset;
+      }
+    }
+    &__edit {
+      margin-left: 0.3rem;
+      border-radius: 0.4rem;
+      background: #30a8ff;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: $white;
+      padding: 0.3rem;
+      transition: all 0.1s ease-in-out;
+      &:hover {
+        background: #3072ff;
+      }
+    }
+    &__close {
+      margin-left: 0.3rem;
+      border-radius: 0.4rem;
+      background: $red;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: $white;
+      padding: 0.3rem;
+      transition: all 0.1s ease-in-out;
+      &:hover {
+        background: $darkRed;
+      }
+    }
+  }
+  &__title {
+    font-weight: 700;
+    padding-top: 0.3rem;
+  }
+  &__description {
+    font-size: 0.8rem;
+    padding: 0.3rem 0;
+  }
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}

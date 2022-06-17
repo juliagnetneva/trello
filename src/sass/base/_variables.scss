@@ -1,9 +1,11 @@
 $white: #ffffff;
+$whiteBackground: #fbfbfb;
 $black: #000000;
-$gray: #75767e;
+$gray: #afafb2;
 $darkBlue: #1B2534;
 $darkGray: rgba(27, 37, 52, 0.5);
 $red: #f34747;
+$darkRed: #f12a2a;
 
 $backgroundColor: linear-gradient(295deg, #30A8FF 0%, #c4f5cf 100%);
 $whiteGradient: linear-gradient(180deg, $white 0%, #fbfbfb 100%);
@@ -13,3 +15,4 @@ $greenGradient: linear-gradient(180deg, #50de8e 0%, #aaf3d9 100%);
 
 $boxShadowLg: 0 0.3rem 1.3rem rgba($black, .3);
 $boxShadowSm: 0 0.1rem 0.8rem rgba($black, .1);
+$boxShadowInset: inset 0 0.1rem 0.1rem rgba(114, 74, 42, 0.1);

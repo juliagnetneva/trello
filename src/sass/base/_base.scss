@@ -1,0 +1,122 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.header {
+  border-radius: 0.7rem;
+  background: $whiteGradient;
+  box-shadow: $boxShadowLg;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  &__logo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    &__img {
+      width: 100px;
+      margin-right: 1.5rem;
+    }
+    &__title {
+      font-family: 'Poppins', sans-serif;
+      color: $darkBlue;
+      font-weight: 600;
+      max-width: 60%;
+    }
+  }
+  &__clock {
+    border-radius: 0.7rem;
+    background: $darkBlue;
+    margin-left: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__content {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 2rem;
+      color: $white;
+    }
+  }
+}
+
+.main {
+  width: 100%;
+  min-height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  &__block {
+    width: 32%;
+    background-color: white;
+    border-radius: 0.7rem;
+    box-shadow: $boxShadowLg;
+    display: flex;
+    flex-direction: column;
+    &__title {
+      min-height: 4rem;
+      width: 100%;
+      border-radius: 0.7rem 0.7rem 0 0;
+      background: $darkBlue;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: $white;
+      text-align: center;
+      padding: 1rem;
+    }
+    &__list {
+      height: 100%;
+      width: 100%;
+    }
+    &__button {
+      min-height: 4rem;
+      width: 100%;
+      border-radius: 0 0 0.7rem 0.7rem;
+      background: $darkBlue;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: $white;
+      margin-top: auto;
+      transition: all 0.1s ease-in-out;
+      &:hover {
+        background: $darkGray;
+      }
+    }
+  }
+}
+
+
+.red {
+  background: $redGradient;
+}
+.orange {
+  background: $orangeGradient;
+}
+.green {
+  background: $greenGradient;
+}
+.button {
+
+}
+
+.scroll {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $darkGray;
+    border-radius: 0.4rem;
+  }
+}
+
+
