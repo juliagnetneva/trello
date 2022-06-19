@@ -7,7 +7,6 @@ const listTodoElement = $('#list-todo');
 const listProgressElement = $('#list-progress');
 const listDoneElement = $('#list-done');
 
-
 function clearList (list) {
   list.innerHTML = '';
 }

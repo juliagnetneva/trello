@@ -7,7 +7,10 @@ const titleTodoElement = $('#title');
 const contentTodoElement = $('#textarea');
 const selectUserElement = $('#selectUser');
 const selectStatusElement = $('#select-status');
-
+const mainElement = $('.main');
+const listTodoElement = $('#list-todo');
+const listProgressElement = $('#list-progress');
+const listDoneElement = $('#list-done');
 
 function handleAddNewTodo(event){
   event.preventDefault();
@@ -24,14 +27,47 @@ function handleDeleteAllTodo(){
   render(listDoneElement, dataDone);
 }
 
-function handleDeleteTodo() {
-  // написать удаление todo
+function handleClickDeleteTodo(event) {
+  const target = event.target;
+  const action = target.dataset.action;
+  if (action == 'delete') {
+    const todoElement = target.closest('.item');
+    const id = todoElement.id;
+    dataTodo.forEach((item, index) => {
+      if (item.id == id) {
+        dataTodo.splice(index, 1)
+        render(listTodoElement, dataTodo)
+      }
+    });
+    dataProgress.forEach((item, index) => {
+      if (item.id == id) {
+        dataProgress.splice(index, 1)
+        render(listProgressElement, dataProgress)
+      }
+    });
+    dataDone.forEach((item, index) => {
+      if (item.id == id) {
+        dataDone.splice(index, 1)
+        render(listProgressElement, dataDone)
+      }
+    });
+  }
 }
 
-function handleEditTodo() {
-  // открыть модальное окно с данными из todo
-}
+function handleClickEditTodo(event) {
+  const { target } = event;
+  const action = target.dataset.action;
+  console.log(action)
+  if (action == 'edit') {
+    const todoElement = target.closest('.item');
+    const id = todoElement.id;
+    console.log(id)
+    event.preventDefault();
+    modalElement.classList.add('active');
 
+  }
+}
+//____________________________________________________________________________
 function handleSubmitForm(event) {
   event.preventDefault();
   const { currentTarget: formElement } = event
@@ -48,13 +84,18 @@ function handleSubmitForm(event) {
   modalElement.classList.remove('active');
 }
 
+function handleBeforeUnload () {
+  setDataTodo();
+  setDataProgress();
+  setDataDone();
+}
 
 export {
   handleSubmitForm,
-  handleEditTodo,
   handleDeleteAllTodo,
-  handleDeleteTodo,
+  handleClickDeleteTodo,
   handleCancelModal,
   handleAddNewTodo,
-
+  handleBeforeUnload,
+  handleClickEditTodo
 }
