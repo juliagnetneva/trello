@@ -3,6 +3,7 @@ import {templateTodo} from "./templates";
 import {dataDone, dataProgress, dataTodo, setDataDone, setDataProgress, setDataTodo} from "./storage";
 import {buildDate} from "./clock";
 
+
 const listTodoElement = $('#list-todo');
 const listProgressElement = $('#list-progress');
 const listDoneElement = $('#list-done');
@@ -18,6 +19,13 @@ function render (list, data) {
   })
   list.innerHTML = html;
 }
+
+function renderLists() {
+  render(listTodoElement, dataTodo);
+  render(listProgressElement, dataProgress);
+  render(listDoneElement, dataDone);
+}
+
 const updateListTodo = () => {
   setDataTodo();
   render(listTodoElement, dataTodo);
@@ -47,4 +55,4 @@ class Todo {
   }
 }
 
-export { render, updateLists, Todo }
+export { render, renderLists, updateLists, Todo }

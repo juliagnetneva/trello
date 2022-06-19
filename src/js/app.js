@@ -1,5 +1,5 @@
 import { startClock} from './clock.js';
-import { $, $$ } from './helpers.js';
+import { $} from './helpers.js';
 import {
   handleSubmitForm,
   handleDeleteAllTodo,
@@ -7,34 +7,25 @@ import {
   handleCancelModal,
   handleAddNewTodo,
   handleBeforeUnload,
-  handleClickEditTodo
+  handleClickEditTodo,
+  handleFocusTitleModal
 } from './handlers.js';
 
-import {dataDone, dataProgress, dataTodo} from './storage';
-import { render } from './compositions';
+import { renderLists } from './compositions';
 
 startClock();
 const mainElement = $('.main');
-const listTodoElement = $('#list-todo');
-const listProgressElement = $('#list-progress');
-const listDoneElement = $('#list-done');
-const buttonAddElement = $('#buttonAddTodo');
-const buttonDeleteAllElement = $('#buttonDeleteAll');
 const formElement = $('#form-todo');
-const buttonCancelModalElement = $('#button-cancel-modal');
 const titleModalElement = $('#title')
 
-render(listTodoElement, dataTodo);
-render(listProgressElement, dataProgress);
-render(listDoneElement, dataDone);
-
+renderLists();
 
 window.addEventListener('beforeunload', handleBeforeUnload);
-buttonAddElement.addEventListener('click', handleAddNewTodo);
-buttonCancelModalElement.addEventListener('click', handleCancelModal);
-formElement.addEventListener('click', handleSubmitForm);
-buttonDeleteAllElement.addEventListener('click', handleDeleteAllTodo);
+mainElement.addEventListener('click', handleAddNewTodo);
 mainElement.addEventListener('click', handleClickDeleteTodo);
 mainElement.addEventListener('click', handleClickEditTodo);
-titleModalElement.addEventListener('focus', () => { return titleModalElement.value = ''});
+mainElement.addEventListener('click', handleDeleteAllTodo);
+formElement.addEventListener('click', handleSubmitForm);
+formElement.addEventListener('click', handleCancelModal);
+titleModalElement.addEventListener('focus', handleFocusTitleModal);
 

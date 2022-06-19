@@ -1,6 +1,7 @@
 let dataTodo = getDataTodo();
 let dataProgress = getDataProgress();
 let dataDone = getDataDone();
+let data = [dataTodo, dataProgress, dataDone];
 
 function getDataTodo() {
   if(!localStorage.todo) {
@@ -35,6 +36,6 @@ const setDataDone = () => {
 }
 
 export {
-  dataTodo, dataProgress, dataDone,
+  dataTodo, dataProgress, dataDone, data,
   setDataTodo, setDataProgress, setDataDone
 }

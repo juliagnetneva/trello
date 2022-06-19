@@ -1,5 +1,5 @@
 .popup {
-display: none;
+  display: none;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -26,8 +26,8 @@ display: none;
   display: block;
 }
 
-#form-todo {
-  & #textarea {
+#form-todo, #form-todo-edit {
+  & #textarea-edit {
     height: 100px;
   }
   & .bottom-block {

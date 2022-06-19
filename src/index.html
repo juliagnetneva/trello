@@ -55,13 +55,9 @@
 <div class="popup" id="modal-todo">
   <div class="popup__container">
     <div class="popup__body">
-
       <form class="row g-3" id="form-todo">
-
         <input type="text" class="form-control" id="title" value="Title">
-
         <textarea class="form-control" id="textarea" placeholder="Description"></textarea>
-
         <div class="bottom-block">
           <select class="form-select" id="selectUser">
             <option selected disabled value="">Select User</option>
@@ -72,13 +68,34 @@
             <option value="Anton">Anton</option>
             <option value="Michael">Michael</option>
           </select>
-
           <button id="button-cancel-modal" class="btn btn-secondary">Cancel</button>
           <button id="button-confirm-modal" class="btn btn-primary">Confirm</button>
         </div>
-
       </form>
+    </div>
+  </div>
+</div>
 
+<div class="popup" id="edit-todo">
+  <div class="popup__container">
+    <div class="popup__body">
+      <form class="row g-3" id="form-todo-edit">
+        <input type="text" class="form-control" id="title-edit" value="Title">
+        <textarea class="form-control" id="textarea-edit" placeholder="Description"></textarea>
+        <div class="bottom-block">
+          <select class="form-select" id="selectUser-edit">
+            <option selected disabled value="">Select User</option>
+            <option value="Mary">Mary</option>
+            <option value="Anna">Anna</option>
+            <option value="Yuri">Yuri</option>
+            <option value="Elena">Elena</option>
+            <option value="Anton">Anton</option>
+            <option value="Michael">Michael</option>
+          </select>
+          <button id="button-cancel-edit" class="btn btn-secondary">Cancel</button>
+          <button id="button-confirm-edit" class="btn btn-primary">Confirm</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
