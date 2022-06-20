@@ -51,7 +51,7 @@ class Todo {
     this.id = new Date().getTime();
     this.createdAt = buildDate(new Date());
     this.user = user;
-    this.status = '';
+    this.selected = '';
   }
 }
 

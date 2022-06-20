@@ -1,5 +1,5 @@
-import { $, $$ } from './helpers.js';
-import {dataTodo, dataDone, data, setDataTodo, setDataProgress, setDataDone,} from './storage.js';
+import { $} from './helpers.js';
+import {dataTodo, dataDone, data, setDataTodo, setDataProgress, setDataDone, dataProgress,} from './storage.js';
 import { Todo, render, updateLists} from './compositions.js';
 
 //__________modal new ______________
@@ -102,7 +102,8 @@ function handleClickEditTodo(event) {
           modalEditElement.classList.add('active');
           event.preventDefault();
 
-          confirmEditElement.addEventListener('click', function handleSubmitEditForm(event) {
+          confirmEditElement.addEventListener('click',
+            function handleSubmitEditForm(event) {
             if(event.target.id != 'button-confirm-edit') {
               return
             }
@@ -119,10 +120,45 @@ function handleClickEditTodo(event) {
   }
 }
 
+//_______________select status and remove to another list___________________________________________________
+function handleChangeSelectOption(event) {
+  const {target} = event;
+  const action = target.dataset.action;
+  if (action != 'select') {
+    return
+  }
+  let selectedOption = target.value;
+  const todoElement = target.closest('.item');
+  const id = todoElement.id;
+  data.forEach(dataItem => {
+    dataItem.forEach((item, index) => {
+      if (item.id == id) {
+        if(selectedOption == 'todo') {
+          item.selected = selectedOption;
+          dataItem.splice(index, 1);
+          dataTodo.push(item);
+          updateLists();
+        }
+        if(selectedOption == 'progress' && dataProgress.length > 6) {
+          alert ('Нельзя добавить больше 6 задач!')
+        } else {
+          item.selected = selectedOption;
+          dataItem.splice(index, 1);
+          dataProgress.push(item);
+          updateLists();
+        }
 
-//____________________________________________________________________________
+        if(selectedOption == 'done') {
+          item.selected = selectedOption;
+          dataItem.splice(index, 1);
+          dataDone.push(item);
+          updateLists();
+        }
 
-
+      }
+    })
+  })
+}
 
 export {
   handleSubmitForm,
@@ -132,5 +168,6 @@ export {
   handleAddNewTodo,
   handleBeforeUnload,
   handleClickEditTodo,
-  handleFocusTitleModal
+  handleFocusTitleModal,
+  handleChangeSelectOption
 }

@@ -8,7 +8,8 @@ import {
   handleAddNewTodo,
   handleBeforeUnload,
   handleClickEditTodo,
-  handleFocusTitleModal
+  handleFocusTitleModal,
+  handleChangeSelectOption
 } from './handlers.js';
 
 import { renderLists } from './compositions';
@@ -22,6 +23,7 @@ renderLists();
 
 window.addEventListener('beforeunload', handleBeforeUnload);
 mainElement.addEventListener('click', handleAddNewTodo);
+mainElement.addEventListener('change', handleChangeSelectOption)
 mainElement.addEventListener('click', handleClickDeleteTodo);
 mainElement.addEventListener('click', handleClickEditTodo);
 mainElement.addEventListener('click', handleDeleteAllTodo);
