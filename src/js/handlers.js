@@ -1,6 +1,7 @@
 import { $, $$ } from './helpers.js';
 import {
-  dataTodo, dataDone, data, setDataTodo, setDataProgress, setDataDone, dataProgress,
+  dataTodo, dataDone, dataProgress, data,
+  setDataTodo, setDataProgress, setDataDone,
 } from './storage.js';
 import {  render, updateLists, getCheckedPriority } from './compositions.js';
 import { Todo } from './classes.js'
@@ -10,7 +11,7 @@ const modalElement = $('#modal-todo');
 const titleModalElement = $('#title');
 const textModalElement = $('#textarea');
 const selectUserModalElement = $('#selectUser');
-const priorityElements = $$('input[name="priority"]')
+const radioElements = $$('input[name="priority"]')
 
 // ___________edit_________________________
 const formEditElement = $('#form-todo-edit');
@@ -19,6 +20,7 @@ const titleEditElement = $('#title-edit');
 const textEditElement = $('#textarea-edit');
 const selectUserEditElement = $('#selectUser-edit');
 const confirmEditElement = $('#button-confirm-edit');
+const radioEditElements = $$('input[name="priority-edit"]')
 
 function handleBeforeUnload() {
   setDataTodo();
@@ -46,6 +48,10 @@ function handleDeleteAllTodo(event) {
 }
 
 // ________________________________modal open ____________________________
+function handleFocusTitleModal() {
+  return titleModalElement.value = '';
+}
+
 function handleCancelModal(event) {
   if (event.target.id !== 'button-cancel-modal') {
     return;
@@ -53,9 +59,6 @@ function handleCancelModal(event) {
   formElement.reset();
   modalElement.classList.remove('active');
 }
-
-
-
 
 function handleSubmitForm(event) {
   if (event.target.id != 'button-confirm-modal') {
@@ -66,17 +69,13 @@ function handleSubmitForm(event) {
   const title = titleModalElement.value;
   const content = textModalElement.value;
   const user = selectUserModalElement.value;
-  const priority = getCheckedPriority(priorityElements);
+  const priority = getCheckedPriority(radioElements);
   dataTodo.push(new Todo(title, content, user, priority));
-  console.log(dataTodo)
   formElement.reset();
   updateLists();
   modalElement.classList.remove('active');
 }
 
-function handleFocusTitleModal() {
-  return titleModalElement.value = '';
-}
 
 // _________________________________todo-item_____________________________
 function handleClickDeleteTodo(event) {
@@ -108,18 +107,18 @@ function handleClickEditTodo(event) {
           titleEditElement.value = item.title;
           textEditElement.value = item.text;
           selectUserEditElement.value = item.user;
+          const el = radioEditElements.find(el => el.value === item.priority)
+          if (el) el.checked = true;
           modalEditElement.classList.add('active');
           event.preventDefault();
-
-          confirmEditElement.addEventListener(
-            'click',
-            (event) => {
+          confirmEditElement.addEventListener('click', (event) => {
               if (event.target.id !== 'button-confirm-edit') {
                 return;
               }
               item.title = titleEditElement.value;
               item.text = textEditElement.value;
               item.user = selectUserEditElement.value;
+              item.priority = getCheckedPriority(radioEditElements)
               updateLists();
               formEditElement.reset();
               modalEditElement.classList.remove('active');
@@ -162,8 +161,6 @@ function handleChangeSelectOption(event) {
           dataProgress.push(item);
           updateLists();
         }
-        // если болешье 6 задач - не добавлять!! и вывести модальное окно
-        // 'Complete current tasks before adding new ones to work'_____
       }
     });
   });

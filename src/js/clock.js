@@ -12,6 +12,6 @@ function startClock() {
 }
 
 function buildDate(date) {
-  return `${hours}:${minutes} ${dayDate}.${month}.${date.getFullYear()}`;
+  return `${hours}:${minutes}  ${dayDate}.${month}.${date.getFullYear()}`;
 }
 export { startClock, buildDate };

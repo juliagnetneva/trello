@@ -46,15 +46,16 @@ function updateLists() {
   updateListDone();
 }
 
-function getCheckedPriority(priorities) {
-  for (const item of priorities) {
-    if (item.checked) {
-      return item.value
+function getCheckedPriority(inputs) {
+  for (const input of inputs) {
+    if (input.checked) {
+      return input.value
     }
   }
   return 'not checked'
 }
 
+
+
 export {
-  render, renderLists, updateLists, getCheckedPriority,
-};
+  render, renderLists, updateLists, getCheckedPriority};
