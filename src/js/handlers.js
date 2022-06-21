@@ -1,15 +1,16 @@
-import { $ } from './helpers.js';
+import { $, $$ } from './helpers.js';
 import {
   dataTodo, dataDone, data, setDataTodo, setDataProgress, setDataDone, dataProgress,
 } from './storage.js';
-import { Todo, render, updateLists } from './compositions.js';
-
+import {  render, updateLists, getCheckedPriority } from './compositions.js';
+import { Todo } from './classes.js'
 // __________modal new ______________
 const formElement = $('#form-todo');
 const modalElement = $('#modal-todo');
 const titleModalElement = $('#title');
 const textModalElement = $('#textarea');
 const selectUserModalElement = $('#selectUser');
+const priorityElements = $$('input[name="priority"]')
 
 // ___________edit_________________________
 const formEditElement = $('#form-todo-edit');
@@ -53,6 +54,9 @@ function handleCancelModal(event) {
   modalElement.classList.remove('active');
 }
 
+
+
+
 function handleSubmitForm(event) {
   if (event.target.id != 'button-confirm-modal') {
     return;
@@ -61,8 +65,10 @@ function handleSubmitForm(event) {
   const { currentTarget: formElement } = event;
   const title = titleModalElement.value;
   const content = textModalElement.value;
-  const user = selectUserModalElement.value; // option.value = '3345445' / = 'mark'
-  dataTodo.push(new Todo(title, content, user));
+  const user = selectUserModalElement.value;
+  const priority = getCheckedPriority(priorityElements);
+  dataTodo.push(new Todo(title, content, user, priority));
+  console.log(dataTodo)
   formElement.reset();
   updateLists();
   modalElement.classList.remove('active');

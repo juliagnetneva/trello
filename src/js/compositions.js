@@ -1,10 +1,10 @@
-/* eslint-disable */
+
 import { $ } from './helpers';
 import { templateTodo } from './templates';
 import {
   dataDone, dataProgress, dataTodo, setDataDone, setDataProgress, setDataTodo,
 } from './storage';
-import { buildDate } from './clock';
+
 
 const listTodoElement = $('#list-todo');
 const listProgressElement = $('#list-progress');
@@ -46,17 +46,15 @@ function updateLists() {
   updateListDone();
 }
 
-class Todo {
-  constructor(title, content, user) {
-    this.title = title.trim() ? title : '';
-    this.text = content.trim() ? content : '';
-    this.id = new Date().getTime();
-    this.createdAt = buildDate(new Date());
-    this.user = user;
-    this.selected = '';
+function getCheckedPriority(priorities) {
+  for (const item of priorities) {
+    if (item.checked) {
+      return item.value
+    }
   }
+  return 'not checked'
 }
 
 export {
-  render, renderLists, updateLists, Todo,
+  render, renderLists, updateLists, getCheckedPriority,
 };

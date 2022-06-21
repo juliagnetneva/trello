@@ -33,6 +33,23 @@
   & #textarea-edit {
     min-height: 100px;
   }
+  & .priority {
+    display: flex;
+    padding-top: 10px;
+    &__label {
+      margin-right: 1.5rem;
+      margin-bottom: 0;
+      padding-top: 3px;
+      line-height: 1;
+      display: inline-block;
+    }
+    & .form-check {
+      margin-bottom: 0;
+      & label {
+        padding-top: 3px;
+      }
+    }
+  }
   & .bottom-block {
     display: flex;
     justify-content: space-between;
