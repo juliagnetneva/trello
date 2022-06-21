@@ -27,8 +27,11 @@
 }
 
 #form-todo, #form-todo-edit {
+  & #textarea {
+    min-height: 100px;
+  }
   & #textarea-edit {
-    height: 100px;
+    min-height: 100px;
   }
   & .bottom-block {
     display: flex;

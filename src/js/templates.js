@@ -1,11 +1,12 @@
-const templateTodo = ({ title, text, createdAt, user, id, selected }) => {
-  return `
+const templateTodo = ({
+  title, text, createdAt, user, id, selected,
+}) => `
     <div class="item" id="${id}">
        <div class="item__top">
           <select class="item__top__select" data-action="select">
-                  <option value="todo" ${(selected == 'todo') ? 'selected' : ''}>TODO</option>
-                  <option value="progress" ${(selected == 'progress') ? 'selected' : ''}>IN PROGRESS</option>
-                  <option value="done" ${(selected == 'done') ? 'selected' : ''}>DONE</option>
+                  <option value="todo" ${(selected === 'todo') ? 'selected' : ''}>TODO</option>
+                  <option value="progress" ${(selected === 'progress') ? 'selected' : ''}>IN PROGRESS</option>
+                  <option value="done" ${(selected === 'done') ? 'selected' : ''}>DONE</option>
           </select>
           <button class="item__top__edit" data-action="edit">Edit</button>
           <button class="item__top__close" data-action="delete">Delete</button>
@@ -17,7 +18,14 @@ const templateTodo = ({ title, text, createdAt, user, id, selected }) => {
           <div class="item__bottom__time">${createdAt}</div>
        </div>
     </div>
-`
+`;
+
+function templateOption ({ username}) {
+  return `
+  <option value="${username}">${username}</option>
+  `
 }
 
-export { templateTodo }
+const templateDisableOption = '<option selected disabled value="">Select User</option>'
+
+export { templateTodo, templateOption, templateDisableOption };

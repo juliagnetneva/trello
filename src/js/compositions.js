@@ -1,22 +1,24 @@
-import {$} from "./helpers";
-import {templateTodo} from "./templates";
-import {dataDone, dataProgress, dataTodo, setDataDone, setDataProgress, setDataTodo} from "./storage";
-import {buildDate} from "./clock";
-
+/* eslint-disable */
+import { $ } from './helpers';
+import { templateTodo } from './templates';
+import {
+  dataDone, dataProgress, dataTodo, setDataDone, setDataProgress, setDataTodo,
+} from './storage';
+import { buildDate } from './clock';
 
 const listTodoElement = $('#list-todo');
 const listProgressElement = $('#list-progress');
 const listDoneElement = $('#list-done');
 
-function clearList (list) {
+function clearList(list) {
   list.innerHTML = '';
 }
-function render (list, data) {
+function render(list, data) {
   clearList(list);
   let html = '';
-  data.forEach(item => {
+  data.forEach((item) => {
     html += templateTodo(item);
-  })
+  });
   list.innerHTML = html;
 }
 
@@ -29,19 +31,19 @@ function renderLists() {
 const updateListTodo = () => {
   setDataTodo();
   render(listTodoElement, dataTodo);
-}
+};
 const updateListProgress = () => {
   setDataProgress();
   render(listProgressElement, dataProgress);
-}
+};
 const updateListDone = () => {
   setDataDone();
   render(listDoneElement, dataDone);
-}
-function updateLists () {
+};
+function updateLists() {
   updateListTodo();
   updateListProgress();
-  updateListDone()
+  updateListDone();
 }
 
 class Todo {
@@ -55,4 +57,6 @@ class Todo {
   }
 }
 
-export { render, renderLists, updateLists, Todo }
+export {
+  render, renderLists, updateLists, Todo,
+};

@@ -1,41 +1,38 @@
-let dataTodo = getDataTodo();
-let dataProgress = getDataProgress();
-let dataDone = getDataDone();
-let data = [dataTodo, dataProgress, dataDone];
-
 function getDataTodo() {
-  if(!localStorage.todo) {
+  if (!localStorage.todo) {
     return [];
-  } else {
-    return JSON.parse(localStorage.getItem('todo'));
   }
+  return JSON.parse(localStorage.getItem('todo'));
 }
 function getDataProgress() {
-  if(!localStorage.progress) {
+  if (!localStorage.progress) {
     return [];
-  } else {
-    return JSON.parse(localStorage.getItem('progress'));
   }
+  return JSON.parse(localStorage.getItem('progress'));
 }
 function getDataDone() {
-  if(!localStorage.done) {
+  if (!localStorage.done) {
     return [];
-  } else {
-    return JSON.parse(localStorage.getItem('done'));
   }
+  return JSON.parse(localStorage.getItem('done'));
 }
+
+const dataTodo = getDataTodo();
+const dataProgress = getDataProgress();
+const dataDone = getDataDone();
+const data = [dataTodo, dataProgress, dataDone];
 
 const setDataTodo = () => {
   localStorage.setItem('todo', JSON.stringify(dataTodo));
-}
+};
 const setDataProgress = () => {
   localStorage.setItem('progress', JSON.stringify(dataProgress));
-}
+};
 const setDataDone = () => {
   localStorage.setItem('done', JSON.stringify(dataDone));
-}
+};
 
 export {
   dataTodo, dataProgress, dataDone, data,
-  setDataTodo, setDataProgress, setDataDone
-}
+  setDataTodo, setDataProgress, setDataDone,
+};
