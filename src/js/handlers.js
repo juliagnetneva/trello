@@ -5,7 +5,7 @@ import {
 } from './storage.js';
 import { render, updateLists, getCheckedPriority } from './compositions.js';
 import { Todo } from './classes.js';
-import { getUsers, getUsersEdit } from './users';
+import { getUsersEdit } from './users';
 // __________modal new ______________
 const formElement = $('#form-todo');
 const modalElement = $('#modal-todo');
@@ -98,18 +98,25 @@ function handleClickDeleteTodo(event) {
 }
 // ____________________________edit ______________________
 function handleClickEditTodo(event) {
-  console.log('hello');
   const { target } = event;
   const { action } = target.dataset;
   if (action == 'edit') {
     const todoElement = target.closest('.item');
     const { id } = todoElement;
-    console.log('hello');
     data.forEach((dataItem) => {
       dataItem.forEach((item) => {
         if (item.id == id) {
           titleEditElement.value = item.title;
           textEditElement.value = item.text;
+          getUsersEdit(selectUserEditElement);
+
+          const names = selectUserEditElement.getElementsByTagName('option');
+          for (let i = 0; i < names.length; i++) {
+            if (names[i].innerText === item.user) {
+              names[i].selected = true;
+            }
+          }
+
           const el = radioEditElements.find((el) => el.value === item.priority);
           if (el) el.checked = true;
           modalEditElement.classList.add('active');
