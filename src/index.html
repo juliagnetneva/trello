@@ -24,8 +24,15 @@
 
 
     <div class="main__block red">
-      <div class="main__block__title"> TODO
-        <span id="counter-todo" class="badge bg-danger"></span>
+      <div class="main__block__title">
+        <p>TODO</p>
+        <p id="counter-todo" class="badge bg-danger"></p>
+        <div class="filter">
+          <select class="form-select sort">
+            <option value="isChecked">Priority</option>
+            <option value="createdAt">Date</option>
+          </select>
+        </div>
       </div>
       <div id="list-todo" class="main__block__list scroll">
 
@@ -36,8 +43,15 @@
 
 
     <div class="main__block orange">
-      <div class="main__block__title">IN PROGRESS
-        <span id="counter-progress" class="badge bg-warning"></span>
+      <div class="main__block__title">
+        <p>IN PROGRESS</p>
+          <p id="counter-progress" class="badge bg-warning"></p>
+        <div class="filter">
+          <select class="form-select sort">
+            <option value="isChecked">Priority</option>
+            <option value="createdAt">Date</option>
+          </select>
+        </div>
       </div>
       <div id="list-progress" class="main__block__list scroll">
 
@@ -46,8 +60,15 @@
 
 
     <div class="main__block green">
-      <div class="main__block__title">DONE
-        <span id="counter-done" class="badge bg-success"></span>
+      <div class="main__block__title">
+        <p>DONE</p>
+        <p id="counter-done" class="badge bg-success"></p>
+        <div class="filter">
+          <select class="form-select sort">
+            <option value="isChecked">Priority</option>
+            <option value="createdAt">Date</option>
+          </select>
+        </div>
       </div>
       <div id="list-done" class="main__block__list scroll">
 

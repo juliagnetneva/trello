@@ -63,18 +63,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
       min-height: 3.5rem;
       width: 100%;
       border-radius: 0.7rem 0.7rem 0 0;
       background: $darkBlue;
       font-family: 'Open Sans', sans-serif;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 1.2rem;
       color: $white;
       text-align: center;
       padding: 1rem;
-      & span {
-        margin-left: 0.5rem;
+      & p {
+        margin: 0;
+        margin-right: 0.5rem;
       }
     }
     &__list {
@@ -99,7 +101,6 @@
   }
 }
 
-
 .red {
   background: $redGradient;
 }
@@ -108,9 +109,6 @@
 }
 .green {
   background: $greenGradient;
-}
-.button {
-
 }
 
 .scroll {
@@ -126,4 +124,13 @@
   }
 }
 
+.filter {
+  margin-left: auto;
+  border-radius: 2px;
 
+  & .sort {
+    width: 1rem;
+    height: 1.6rem;
+    background-color: $white;
+  }
+}
