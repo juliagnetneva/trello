@@ -21,12 +21,23 @@
     padding: 1rem;
     position: relative;
   }
+  &__question{
+    font-size: 1.2rem;
+    line-height: 3rem;
+    & span {
+      font-size: 2rem;
+
+      font-weight: 700;
+      color: $darkRed;
+      padding-right: 1rem;
+    }
+  }
 }
 .popup.active {
   display: block;
 }
 
-#form-todo, #form-todo-edit {
+#form-todo, #form-todo-edit, #form-warning {
   & #textarea {
     min-height: 100px;
   }
@@ -50,6 +61,7 @@
       }
     }
   }
+
   & .bottom-block {
     display: flex;
     justify-content: space-between;
