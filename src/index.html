@@ -9,150 +9,132 @@
   <script src="./js/app.js" type="module"></script>
 </head>
 <body>
-<div class="wrapper container">
-  <div class="header">
-    <div class="header__logo">
-      <div class="header__logo__img"><img src="./assets/logo.svg" alt="logotype"></div>
-      <h1 class="header__logo__title">Organize your projects</h1>
+  <div class="wrapper container">
+    <div class="header">
+      <div class="header__logo">
+        <div class="header__logo__img"><img src="./assets/logo.svg" alt="logotype"></div>
+        <h1 class="header__logo__title">Organize your projects</h1>
+      </div>
+      <div class="header__clock">
+        <div id="time" class="header__clock__content">00:00</div>
+      </div>
     </div>
-    <div class="header__clock">
-      <div id="time" class="header__clock__content">00:00</div>
+    <div class="main">
+      <div class="main__block red">
+        <div class="main__block__title">
+          <p>TODO</p>
+          <p id="counter-todo" class="badge bg-danger"></p>
+          <div class="filter">
+            <select id="sort-todo" class="form-select sort">
+              <option value="priority">Priority</option>
+              <option value="createdAt">Date</option>
+            </select>
+          </div>
+        </div>
+        <div id="list-todo" class="main__block__list scroll"></div>
+        <button id="buttonAddTodo" class="main__block__button">+ Add todo</button>
+      </div>
+      <div class="main__block orange">
+        <div class="main__block__title">
+          <p>IN PROGRESS</p>
+            <p id="counter-progress" class="badge bg-warning"></p>
+          <div class="filter">
+            <select id="sort-progress" class="form-select sort">
+              <option value="priority">Priority</option>
+              <option value="createdAt">Date</option>
+            </select>
+          </div>
+        </div>
+        <div id="list-progress" class="main__block__list scroll"></div>
+      </div>
+      <div class="main__block green">
+        <div class="main__block__title">
+          <p>DONE</p>
+          <p id="counter-done" class="badge bg-success"></p>
+          <div class="filter">
+            <select id="sort-done" class="form-select sort">
+              <option value="priority">Priority</option>
+              <option value="createdAt">Date</option>
+            </select>
+          </div>
+        </div>
+        <div id="list-done" class="main__block__list scroll"></div>
+        <button id="buttonDeleteAll" class="main__block__button">Delete all</button>
+      </div>
     </div>
   </div>
-
-  <div class="main">
-
-
-    <div class="main__block red">
-      <div class="main__block__title">
-        <p>TODO</p>
-        <p id="counter-todo" class="badge bg-danger"></p>
-        <div class="filter">
-          <select class="form-select sort">
-            <option value="isChecked">Priority</option>
-            <option value="createdAt">Date</option>
-          </select>
-        </div>
+  <div class="popup" id="modal-todo">
+    <div class="popup__container">
+      <div class="popup__body">
+        <form class="row g-3" id="form-todo">
+          <input type="text" class="form-control" id="title" value="Title">
+          <textarea class="form-control" id="textarea" placeholder="Description"></textarea>
+          <div class="priority" id="priority">
+            <p class="priority__label">Choose a priority:</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="inlineRadio1" value="Weak">
+              <label class="form-check-label" for="inlineRadio1">Weak</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="inlineRadio2" value="Normal">
+              <label class="form-check-label" for="inlineRadio2">Normal</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="inlineRadio3" value="High">
+              <label class="form-check-label" for="inlineRadio3">High</label>
+            </div>
+          </div>
+          <div class="bottom-block">
+            <select class="form-select" id="selectUser"></select>
+            <button id="button-cancel-modal" class="btn btn-secondary">Cancel</button>
+            <button id="button-confirm-modal" class="btn btn-primary">Confirm</button>
+          </div>
+        </form>
       </div>
-      <div id="list-todo" class="main__block__list scroll">
-
-
-      </div>
-      <button id="buttonAddTodo" class="main__block__button">+ Add todo</button>
-    </div>
-
-
-    <div class="main__block orange">
-      <div class="main__block__title">
-        <p>IN PROGRESS</p>
-          <p id="counter-progress" class="badge bg-warning"></p>
-        <div class="filter">
-          <select class="form-select sort">
-            <option value="isChecked">Priority</option>
-            <option value="createdAt">Date</option>
-          </select>
-        </div>
-      </div>
-      <div id="list-progress" class="main__block__list scroll">
-
-      </div>
-    </div>
-
-
-    <div class="main__block green">
-      <div class="main__block__title">
-        <p>DONE</p>
-        <p id="counter-done" class="badge bg-success"></p>
-        <div class="filter">
-          <select class="form-select sort">
-            <option value="isChecked">Priority</option>
-            <option value="createdAt">Date</option>
-          </select>
-        </div>
-      </div>
-      <div id="list-done" class="main__block__list scroll">
-
-      </div>
-      <button id="buttonDeleteAll" class="main__block__button">Delete all</button>
     </div>
   </div>
-
-</div>
-
-<div class="popup" id="modal-todo">
-  <div class="popup__container">
-    <div class="popup__body">
-      <form class="row g-3" id="form-todo">
-        <input type="text" class="form-control" id="title" value="Title">
-        <textarea class="form-control" id="textarea" placeholder="Description"></textarea>
-        <div class="priority" id="priority">
-          <p class="priority__label">Choose a priority:</p>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priority" id="inlineRadio1" value="Low">
-            <label class="form-check-label" for="inlineRadio1">Low</label>
+  <div class="popup" id="edit-todo">
+    <div class="popup__container">
+      <div class="popup__body">
+        <form class="row g-3" id="form-todo-edit">
+          <input type="text" class="form-control" id="title-edit" value="Title">
+          <textarea class="form-control" id="textarea-edit" placeholder="Description"></textarea>
+          <div class="priority">
+            <p class="priority__label">Choose a priority:</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority-edit" id="editRadio1" value="Weak">
+              <label class="form-check-label" for="editRadio1">Weak</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority-edit" id="editRadio2" value="Normal">
+              <label class="form-check-label" for="editRadio2">Normal</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority-edit" id="editRadio3" value="High">
+              <label class="form-check-label" for="editRadio2">High</label>
+            </div>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priority" id="inlineRadio2" value="Medium">
-            <label class="form-check-label" for="inlineRadio2">Medium</label>
+          <div class="bottom-block">
+            <select class="form-select" id="selectUser-edit"></select>
+            <button id="button-cancel-edit" class="btn btn-secondary">Cancel</button>
+            <button id="button-confirm-edit" class="btn btn-primary">Confirm</button>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priority" id="inlineRadio3" value="High">
-            <label class="form-check-label" for="inlineRadio3">High</label>
-          </div>
-        </div>
-        <div class="bottom-block">
-          <select class="form-select" id="selectUser"></select>
-          <button id="button-cancel-modal" class="btn btn-secondary">Cancel</button>
-          <button id="button-confirm-modal" class="btn btn-primary">Confirm</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="popup" id="edit-todo">
-  <div class="popup__container">
-    <div class="popup__body">
-      <form class="row g-3" id="form-todo-edit">
-        <input type="text" class="form-control" id="title-edit" value="Title">
-        <textarea class="form-control" id="textarea-edit" placeholder="Description"></textarea>
-        <div class="priority">
-          <p class="priority__label">Choose a priority:</p>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priority-edit" id="editRadio1" value="Low">
-            <label class="form-check-label" for="editRadio1">Low</label>
+  <div class="popup" id="warning">
+    <div class="popup__container">
+      <div class="popup__body">
+        <form class="row g-3" id="form-warning">
+          <div class="popup__question"><span>!</span>Are you sure you want to delete these tasks?</div>
+          <div class="bottom-block">
+            <button id="button-cancel-warning" class="btn btn-secondary">Cancel</button>
+            <button id="button-confirm-warning" class="btn btn-danger">Delete</button>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priority-edit" id="editRadio2" value="Medium">
-            <label class="form-check-label" for="editRadio2">Medium</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priority-edit" id="editRadio3" value="High">
-            <label class="form-check-label" for="editRadio2">High</label>
-          </div>
-        </div>
-        <div class="bottom-block">
-          <select class="form-select" id="selectUser-edit"></select>
-          <button id="button-cancel-edit" class="btn btn-secondary">Cancel</button>
-          <button id="button-confirm-edit" class="btn btn-primary">Confirm</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="popup" id="warning">
-  <div class="popup__container">
-    <div class="popup__body">
-      <form class="row g-3" id="form-warning">
-        <div class="popup__question"><span>!</span>Are you sure you want to delete these tasks?</div>
-        <div class="bottom-block">
-          <button id="button-cancel-warning" class="btn btn-secondary">Cancel</button>
-          <button id="button-confirm-warning" class="btn btn-danger">Delete</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 </body>
 </html>

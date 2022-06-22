@@ -1,7 +1,7 @@
 function templateTodo({
   title, text, createdAt, user, id, selected, priority,
 }) {
-  const priorityStyle = (priority === 'Low') ? 'green-prior' : (priority === 'Medium' ? 'orange-prior' : (priority === 'High' ? 'red-prior' : ''));
+  const priorityStyle = (priority === 'Weak') ? 'green-prior' : (priority === 'Normal' ? 'orange-prior' : (priority === 'High' ? 'red-prior' : ''));
 
   return `
     <div class="item" id="${id}">

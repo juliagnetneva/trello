@@ -58,6 +58,26 @@ function getCheckedPriority(inputs) {
   return 'not checked';
 }
 
+function sortArray(value, data) {
+  if (value == 'priority') {
+    data.sort((item1, item2) => {
+      const a = item1.priority;
+      const b = item2.priority;
+      if (a > b) { return 1; }
+
+      return -1;
+    });
+  }
+
+  if (value == 'createdAt') {
+    data.sort((prev, next) => {
+      const prevTime = prev.id;
+      const nextTime = next.id;
+      return nextTime - prevTime;
+    });
+  }
+}
+
 export {
-  render, renderLists, updateLists, getCheckedPriority,
+  render, renderLists, updateLists, getCheckedPriority, sortArray,
 };

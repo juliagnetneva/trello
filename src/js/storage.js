@@ -17,10 +17,10 @@ function getDataDone() {
   return JSON.parse(localStorage.getItem('done'));
 }
 
-const dataTodo = getDataTodo();
-const dataProgress = getDataProgress();
-const dataDone = getDataDone();
-const data = [dataTodo, dataProgress, dataDone];
+let dataTodo = getDataTodo();
+let dataProgress = getDataProgress();
+let dataDone = getDataDone();
+let data = [dataTodo, dataProgress, dataDone];
 
 const setDataTodo = () => {
   localStorage.setItem('todo', JSON.stringify(dataTodo));

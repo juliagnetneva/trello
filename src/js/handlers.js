@@ -3,10 +3,12 @@ import {
   dataTodo, dataDone, dataProgress, data,
   setDataTodo, setDataProgress, setDataDone,
 } from './storage.js';
-import { render, updateLists, getCheckedPriority } from './compositions.js';
+import {
+  render, updateLists, getCheckedPriority, sortArray,
+} from './compositions.js';
 import { Todo } from './classes.js';
 import { getUsersEdit } from './users';
-// __________modal new ______________
+
 const formElement = $('#form-todo');
 const modalElement = $('#modal-todo');
 const titleModalElement = $('#title');
@@ -16,7 +18,6 @@ const radioElements = $$('input[name="priority"]');
 const warningElement = $('#warning');
 const confirmDeleteElement = $('#button-confirm-warning');
 
-// ___________edit_________________________
 const formEditElement = $('#form-todo-edit');
 const modalEditElement = $('#edit-todo');
 const titleEditElement = $('#title-edit');
@@ -37,24 +38,41 @@ function handleAddNewTodo(event) {
   }
   event.preventDefault();
   modalElement.classList.add('active');
-
 }
 
 function handleDeleteAllTodo(event) {
   if (event.target.id !== 'buttonDeleteAll') {
     return;
   }
-  warningElement.classList.add('active')
-  confirmDeleteElement.addEventListener('click', ()=> {
+  warningElement.classList.add('active');
+  confirmDeleteElement.addEventListener('click', () => {
     const listDoneElement = $('#list-done');
     const counterDoneElement = $('#counter-done');
     dataDone.length = 0;
     render(listDoneElement, dataDone, counterDoneElement);
-  })
-
+  });
 }
 
-// ________________________________modal open ____________________________
+function handleChangeFilter(event) {
+  const sortTodoElement = document.querySelector('#sort-todo');
+  const sortProgressElement = document.querySelector('#sort-progress');
+  const sortDoneElement = document.querySelector('#sort-done');
+  const { value: valueSortTodo } = sortTodoElement;
+  const { value: valueSortProgress } = sortProgressElement;
+  const { value: valueSortDone } = sortDoneElement;
+
+  if (event.target.id == 'sort-progress') {
+    sortArray(valueSortProgress, dataProgress);
+  }
+  if (event.target.id == 'sort-todo') {
+    sortArray(valueSortTodo, dataTodo);
+  }
+  if (event.target.id == 'sort-done') {
+    sortArray(valueSortDone, dataDone);
+  }
+  updateLists();
+}
+
 function handleFocusTitleModal() {
   return titleModalElement.value = '';
 }
@@ -83,7 +101,6 @@ function handleSubmitForm(event) {
   modalElement.classList.remove('active');
 }
 
-// _________________________________todo-item_____________________________
 function handleClickDeleteTodo(event) {
   const { target } = event;
   const { action } = target.dataset;
@@ -100,7 +117,7 @@ function handleClickDeleteTodo(event) {
     });
   }
 }
-// ____________________________edit ______________________
+
 function handleClickEditTodo(event) {
   const { target } = event;
   const { action } = target.dataset;
@@ -113,14 +130,12 @@ function handleClickEditTodo(event) {
           titleEditElement.value = item.title;
           textEditElement.value = item.text;
           getUsersEdit(selectUserEditElement);
-
           const names = selectUserEditElement.getElementsByTagName('option');
           for (let i = 0; i < names.length; i++) {
             if (names[i].innerText === item.user) {
               names[i].selected = true;
             }
           }
-
           const el = radioEditElements.find((el) => el.value === item.priority);
           if (el) el.checked = true;
           modalEditElement.classList.add('active');
@@ -143,7 +158,6 @@ function handleClickEditTodo(event) {
   }
 }
 
-// _______________select status and remove to another list______________________
 function handleChangeSelectOption(event) {
   const { target } = event;
   const { action } = target.dataset;
@@ -189,4 +203,5 @@ export {
   handleClickEditTodo,
   handleFocusTitleModal,
   handleChangeSelectOption,
+  handleChangeFilter,
 };

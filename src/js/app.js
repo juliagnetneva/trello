@@ -12,6 +12,7 @@ import {
   handleClickEditTodo,
   handleFocusTitleModal,
   handleChangeSelectOption,
+  handleChangeFilter,
 } from './handlers.js';
 
 const selectUserModalElement = $('#selectUser');
@@ -27,6 +28,7 @@ renderLists();
 
 window.addEventListener('beforeunload', handleBeforeUnload);
 mainElement.addEventListener('click', handleAddNewTodo);
+mainElement.addEventListener('change', handleChangeFilter);
 mainElement.addEventListener('change', handleChangeSelectOption);
 mainElement.addEventListener('click', handleClickDeleteTodo);
 mainElement.addEventListener('click', handleClickEditTodo);
