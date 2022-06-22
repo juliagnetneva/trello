@@ -3,15 +3,16 @@ import {
   dataTodo, dataDone, dataProgress, data,
   setDataTodo, setDataProgress, setDataDone,
 } from './storage.js';
-import {  render, updateLists, getCheckedPriority } from './compositions.js';
-import { Todo } from './classes.js'
+import { render, updateLists, getCheckedPriority } from './compositions.js';
+import { Todo } from './classes.js';
+import { getUsersEdit } from './users';
 // __________modal new ______________
 const formElement = $('#form-todo');
 const modalElement = $('#modal-todo');
 const titleModalElement = $('#title');
 const textModalElement = $('#textarea');
 const selectUserModalElement = $('#selectUser');
-const radioElements = $$('input[name="priority"]')
+const radioElements = $$('input[name="priority"]');
 
 // ___________edit_________________________
 const formEditElement = $('#form-todo-edit');
@@ -20,7 +21,7 @@ const titleEditElement = $('#title-edit');
 const textEditElement = $('#textarea-edit');
 const selectUserEditElement = $('#selectUser-edit');
 const confirmEditElement = $('#button-confirm-edit');
-const radioEditElements = $$('input[name="priority-edit"]')
+const radioEditElements = $$('input[name="priority-edit"]');
 
 function handleBeforeUnload() {
   setDataTodo();
@@ -43,8 +44,10 @@ function handleDeleteAllTodo(event) {
   // добавить модальное окно Уверенны, что хотите всё удалить?___________
   // confirm('уверенны что хотите удалить?');
   const listDoneElement = $('#list-done');
+  const counterDoneElement = $('#counter-done');
+
   dataDone.length = 0;
-  render(listDoneElement, dataDone);
+  render(listDoneElement, dataDone, counterDoneElement);
 }
 
 // ________________________________modal open ____________________________
@@ -76,7 +79,6 @@ function handleSubmitForm(event) {
   modalElement.classList.remove('active');
 }
 
-
 // _________________________________todo-item_____________________________
 function handleClickDeleteTodo(event) {
   const { target } = event;
@@ -106,24 +108,31 @@ function handleClickEditTodo(event) {
         if (item.id == id) {
           titleEditElement.value = item.title;
           textEditElement.value = item.text;
-          selectUserEditElement.value = item.user;
-          const el = radioEditElements.find(el => el.value === item.priority)
+          getUsersEdit(selectUserEditElement);
+
+          const names = selectUserEditElement.getElementsByTagName('option');
+          for (let i = 0; i < names.length; i++) {
+            if (names[i].innerText === item.user) {
+              names[i].selected = true;
+            }
+          }
+
+          const el = radioEditElements.find((el) => el.value === item.priority);
           if (el) el.checked = true;
           modalEditElement.classList.add('active');
           event.preventDefault();
           confirmEditElement.addEventListener('click', (event) => {
-              if (event.target.id !== 'button-confirm-edit') {
-                return;
-              }
-              item.title = titleEditElement.value;
-              item.text = textEditElement.value;
-              item.user = selectUserEditElement.value;
-              item.priority = getCheckedPriority(radioEditElements)
-              updateLists();
-              formEditElement.reset();
-              modalEditElement.classList.remove('active');
-            },
-          );
+            if (event.target.id !== 'button-confirm-edit') {
+              return;
+            }
+            item.title = titleEditElement.value;
+            item.text = textEditElement.value;
+            item.user = selectUserEditElement.value;
+            item.priority = getCheckedPriority(radioEditElements);
+            updateLists();
+            formEditElement.reset();
+            modalEditElement.classList.remove('active');
+          });
         }
       });
     });
