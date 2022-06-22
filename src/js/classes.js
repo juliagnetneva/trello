@@ -1,4 +1,4 @@
-import {buildDate} from "./clock";
+import { buildDate } from './clock.js';
 
 class Todo {
   constructor(title, content, user, priority) {

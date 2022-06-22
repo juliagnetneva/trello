@@ -1,5 +1,7 @@
-import { startClock } from './clock.js';
 import { $ } from './helpers.js';
+import { getUsers } from './users.js';
+import { startClock } from './clock.js';
+import { renderLists } from './compositions';
 import {
   handleSubmitForm,
   handleDeleteAllTodo,
@@ -11,19 +13,9 @@ import {
   handleFocusTitleModal,
   handleChangeSelectOption,
 } from './handlers.js';
-import { renderLists } from './compositions';
-import { templateOption, templateDisableOption } from './templates.js'
 
-fetch('https://jsonplaceholder.typicode.com/users')
-  .then(response => response.json())
-  .then(data => {
-    const selectUserElement = $('#selectUser');
-    let options = '';
-    data.forEach(item => {
-      options += templateOption(item);
-    })
-    selectUserElement.innerHTML = templateDisableOption + options;
-  })
+const selectUserModalElement = $('#selectUser');
+getUsers(selectUserModalElement);
 
 startClock();
 

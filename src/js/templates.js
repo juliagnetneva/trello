@@ -1,6 +1,7 @@
-function templateTodo ({ title, text, createdAt, user, id, selected, priority }) {
-  const priorityStyle = (priority === 'Low') ? 'green-prior' : (priority === 'Medium' ? 'orange-prior' : (priority === 'High'? 'red-prior' : ''));
-
+function templateTodo({
+  title, text, createdAt, user, id, selected, priority,
+}) {
+  const priorityStyle = (priority === 'Low') ? 'green-prior' : (priority === 'Medium' ? 'orange-prior' : (priority === 'High' ? 'red-prior' : ''));
 
   return `
     <div class="item" id="${id}">
@@ -21,15 +22,15 @@ function templateTodo ({ title, text, createdAt, user, id, selected, priority })
           <div class="item__bottom__time">${createdAt}</div>
        </div>
     </div>
-`
+`;
 }
 
-function templateOption ({ username}) {
+function templateOption({ username }) {
   return `
   <option value="${username}">${username}</option>
-  `
+  `;
 }
 
-const templateDisableOption = '<option selected disabled value="">Select User</option>'
+const templateDisableOption = '<option selected disabled value="">Select User</option>';
 
 export { templateTodo, templateOption, templateDisableOption };

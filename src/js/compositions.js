@@ -1,18 +1,15 @@
-
 import { $ } from './helpers';
 import { templateTodo } from './templates';
 import {
   dataDone, dataProgress, dataTodo, setDataDone, setDataProgress, setDataTodo,
 } from './storage';
 
-
 const listTodoElement = $('#list-todo');
 const listProgressElement = $('#list-progress');
 const listDoneElement = $('#list-done');
-const counterTodoElement = $('#counter-todo')
-const counterProgressElement = $('#counter-progress')
-const counterDoneElement = $('#counter-done')
-
+const counterTodoElement = $('#counter-todo');
+const counterProgressElement = $('#counter-progress');
+const counterDoneElement = $('#counter-done');
 
 function clearList(list) {
   list.innerHTML = '';
@@ -55,11 +52,12 @@ function updateLists() {
 function getCheckedPriority(inputs) {
   for (const input of inputs) {
     if (input.checked) {
-      return input.value
+      return input.value;
     }
   }
-  return 'not checked'
+  return 'not checked';
 }
 
 export {
-  render, renderLists, updateLists, getCheckedPriority};
+  render, renderLists, updateLists, getCheckedPriority,
+};
